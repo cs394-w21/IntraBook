@@ -1,21 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import SearchStackNavigator from './src/navigators/SearchStackNavigator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Danny test commit.</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <SearchStackNavigator />
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
