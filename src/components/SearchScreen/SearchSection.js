@@ -15,6 +15,7 @@ const SearchSection = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 20,

@@ -1,21 +1,37 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 const ResultItem = ({ navigation, item }) => {
     return (
-        <View style={styles.container}>
-            <Text>{item.author}</Text>
-        </View>
+        <TouchableOpacity
+            style={styles.container}
+            onPress={() => navigation.navigate('ItemScreen')}
+        >
+            <Image
+                source={require('../../../assets/favicon.png')}
+                style={styles.image}
+            />
+            <View>
+                <Text>{item.author}</Text>
+                <Text>{item.title}</Text>
+                <Text>{item.price}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 20,
-    },
+        marginTop: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+      },
+      image: {
+        width: 65,
+        height: 65,
+        borderRadius: 50,
+      },
 });
 
 export default ResultItem;

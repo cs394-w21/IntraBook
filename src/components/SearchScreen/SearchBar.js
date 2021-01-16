@@ -33,10 +33,10 @@ const SearchBar = ({ query, setQuery }) => {
           autoCorrect={false}
           clearButtonMode="always"
           value={query}
-          onChangeText={queryText => handleSearch(queryText)}
+          // onChangeText={queryText => handleSearch(queryText)}
           placeholder="Author, Course Number, Book Name, etc..."
           placeholderTextColor='grey'
-          style={{ backgroundColor: '#333333', color: 'white', width: 320 }}
+          style={{ backgroundColor: '#333333', color: 'white', width: '100%' }}
         />
       </View>
     );

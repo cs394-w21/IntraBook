@@ -8,7 +8,7 @@ const SearchButton = ({ navigation }) => {
             onPress={() => navigation.navigate('SearchResultsScreen')}
         >
             <Text>
-                Search
+                Go
             </Text>
         </TouchableOpacity>
     );
@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-        height: 60,
+        height: 40,
         padding: 10,
-        minWidth: 90,
-        maxWidth: 90,
+        minWidth: 40,
+        maxWidth: 40,
         backgroundColor: '#66b0ff',
     },
 });
