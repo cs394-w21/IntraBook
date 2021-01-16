@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import SearchBar from '../components/SearchScreen/SearchBar';
-import SearchButton from '../components/SearchScreen/SearchButton';
+import SearchBar from './SearchBar';
+import SearchButton from './SearchButton';
 
-const SearchScreen = ({ navigation }) => {
+const SearchSection = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <SearchBar />
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SearchScreen;
+export default SearchSection;

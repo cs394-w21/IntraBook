@@ -1,14 +1,14 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import SearchResultsScreen from '../screens/SearchResultsScreen';
-import SearchScreen from '../screens/SearchScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createStackNavigator();
 
 const SearchStackNavigator = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name='SearchScreen' component={SearchScreen} />
+            <Stack.Screen name='HomeScreen' component={HomeScreen} />
             <Stack.Screen name='SearchResultsScreen' component={SearchResultsScreen} />
         </Stack.Navigator>
     );
