@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     itemList: {
+        marginTop: '-25%',
         marginLeft: '10%'
     }
 });
