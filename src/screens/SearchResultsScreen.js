@@ -8,42 +8,45 @@ const SearchResultsScreen = ({ navigation }) => {
 
     const data = [{
             id: 0,
-            author: "James Avery",
+            author: "Girijesh Dubey",
             title: "Organic Chemistry",
             isbn: 12343212312,
             price: 55.00,
+            pic: require('../../assets/organic_chemistry_1.jpg')
         },
         {
             id: 1,
-            author: "Jessica Avery",
+            author: "Jonathan Clayden",
             title: "Organic Chemistry",
             isbn: 12343212312,
             price: 2000.00,
+            pic: require('../../assets/organic_chemistry_2.jpg')
         },
     ];
 
     return (
         <View style={styles.container}>
             <SearchSection/>
-            <FlatList 
+            <FlatList
+                style = {styles.itemList}
                 data={data}
-                keyExtractor={item => item.id }
+                keyExtractor={item => item.id.toString() }
                 renderItem={({item}) => (
                     <ResultItem navigation={navigation} item={item} />
                 )}
-            />
+            />        
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        marginTop: -100,
-        // justifyContent: 'center',
-        // paddingTop: 10,
+        marginTop: '-25%',
+        flex: 1
     },
+    itemList: {
+        marginLeft: '10%'
+    }
 });
 
 export default SearchResultsScreen;

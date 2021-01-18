@@ -24,7 +24,6 @@ const SearchBar = ({ query, setQuery }) => {
         style={{
           backgroundColor: '#333333',
           padding: 10,
-          marginVertical: 10,
           borderRadius: 20
         }}
       >
