@@ -15,7 +15,7 @@ const ResultItem = ({ navigation, item }) => {
             <View>
                 <Text>      {item.author}</Text>
                 <Text>      {item.title}</Text>
-                <Text>      {item.price}</Text>
+                <Text>      ${item.price}</Text>
             </View>
         </TouchableOpacity>
     );
