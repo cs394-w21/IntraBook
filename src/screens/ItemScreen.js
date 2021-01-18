@@ -1,35 +1,42 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image} from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView} from 'react-native';
+import AddCartButton from '../components/ItemScreen/AddCartButton.js';
+import MessageButton from '../components/ItemScreen/MessageButton.js';
 
 const ItemScreen = ({route, navigation}) => {
     const item = route.params.item;
     return (
-        <View style = {styles.container}>
+        <ScrollView style = {styles.container}>
             <Text style = {styles.title}>{item.title}</Text>
             <Image source = {item.pic} style = {styles.pic}></Image>
             <Text>Author: {item.author}</Text>
             <Text>ISBN: {item.isbn}</Text>
-            <Text style = {styles.price}>${item.price}</Text>
-        </View>
+            <Text style = {styles.price}>${item.price} ({item.condition})</Text>
+            <Text style = {{paddingTop: 5}}>Sold by: {item.poster.name}</Text>
+            <View style ={{flexDirection: 'row', padding: 5}}>
+                <Image source={require('../../assets/location.png')} style= {{ width: 20, height: 20, resizeMode: 'contain'}}></Image>
+                <Text style={{paddingLeft: 10}}>{item.location}</Text>
+            </View>
+            <View style = {{
+                flexDirection: 'row', width:'60%', justifyContent: 'space-evenly', marginBottom: '20%'}}>
+                <AddCartButton/>
+                <MessageButton/>
+            </View>
+            
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: '10%',
-        marginLeft: '10%',
-        marginTop: '10%',
-        marginBottom: '10%'
+        padding: '10%',
     },
     title: {
-        fontSize: 20
+        fontSize: 25
     },
     pic: {
-        marginTop: '5%',
-        width: '70%',
-        height: '70%',
-        alignItems: 'center',
-        resizeMode: 'contain'
+        resizeMode:'contain',
+        width: '100%',
     },
     price: {
         marginTop: 10,
