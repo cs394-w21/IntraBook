@@ -3,10 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
 
-const SearchSection = ({ navigation }) => {
+const SearchSection = ({ navigation, query, setQuery }) => {
     return (
         <View style={styles.container}>
-            <SearchBar />
+            <SearchBar query={query} setQuery={setQuery} />
             <SearchButton navigation={navigation} />
         </View>
     );

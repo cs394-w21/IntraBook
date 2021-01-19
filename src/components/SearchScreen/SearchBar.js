@@ -3,11 +3,11 @@ import { View, TextInput } from 'react-native';
 
 const SearchBar = ({ query, setQuery }) => {
     const handleSearch = text => {
-        const formattedQuery = text.toLowerCase();
-        const filteredData = filter(fullData, user => {
-          return contains(user, formattedQuery);
-        });
-        setFullData(filteredData);
+        // const formattedQuery = text.toLowerCase();
+        // const filteredData = filter(fullData, user => {
+        //   return contains(user, formattedQuery);
+        // });
+        // setFullData(filteredData);
         setQuery(text);
     };
 
@@ -33,7 +33,7 @@ const SearchBar = ({ query, setQuery }) => {
           autoCorrect={false}
           clearButtonMode="always"
           value={query}
-          // onChangeText={queryText => handleSearch(queryText)}
+          onChangeText={queryText => handleSearch(queryText)}
           placeholder="Author, Course Number, Book Name, etc..."
           placeholderTextColor='grey'
           style={{ backgroundColor: '#333333', color: 'white'}}
