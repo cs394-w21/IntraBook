@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
+var filter = require('lodash.filter');
 import SearchResults from '../components/ResultsScreen/SearchResults';
 import SearchSection from '../components/SearchScreen/SearchSection';
 
@@ -110,23 +111,38 @@ const data = [{
     }
 }];
 
-const SearchResultsScreen = ({ navigation }) => {
-    const [query, setQuery] = useState('');
-    const [results, setResults] = useState(data);
+const SearchResultsScreen = ({ route, navigation }) => {
+    const setQuery = route.params.setQuery
+    var query = route.params.query
+    const [results, setResults] = useState([]);
 
     useEffect(() => {
         getResults();
     }, []);
 
     const getResults = () => {
-        const res = data;
-        setResults(res);
+        console.log(query)
+        const formattedQuery = query.toLowerCase();
+        const filteredData = data.filter(item => {
+          contains(item, formattedQuery);
+        });
+        console.log(filteredData)
+        setResults(filteredData);
+    };
+
+    const contains = (item, query) => {
+        console.log(query)
+        const { author, title, isbn, condition } = item;
+        if (author.includes(query) || title.includes(query) || isbn.toString().includes(query) || condition.includes(query)) {
+          return true;
+        }
+        return false;
     };
 
     return (
         <ImageBackground source={require('../../assets/background.png')} style={{width: '100%', height: '100%'}}>
         <View style={styles.container}>
-            <SearchSection query={query} setQuery={setQuery} />
+            <SearchSection navigation={navigation} query={query} setQuery={setQuery} />
             <SearchResults navigation={navigation} results={results} />
         </View>
         </ImageBackground>
