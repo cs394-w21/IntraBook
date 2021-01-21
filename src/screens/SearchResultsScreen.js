@@ -54,31 +54,32 @@ const SearchResultsScreen = ({ navigation }) => {
             email: 'student1@u.northwestern',
             phone: ''
         }
-    }]
-
+    }];
 
     useEffect(() => {
         const db = firebase.database().ref('data');
         const handleData = snap => {
           if (snap.val()) setData(snap.val());
         }
-        db.on('value', handleData, error => alert(error));
+        db.on('value', handleData, error => console.log(error));
         return () => { db.off('value', handleData); };
       }, []);
 
+    //data ? null : setData(data2);
 
 
     const getResults = () => {
         console.log(data)
-        const formattedQuery = query;
-        const filteredData = data2.filter(item => contains(item, formattedQuery));
+        const formattedQuery = query.toLowerCase();
+        const filteredData = data.filter(item => contains(item, formattedQuery));
+        //console.log(filteredData);
         setResults(filteredData);
     };
 
     const contains = (item, query) => {
         if (!query) return false;
         const { author, title, isbn, condition } = item;
-        if (author.includes(query) || title.includes(query) || isbn.toString().includes(query) || condition.includes(query)) {
+        if (author.toLowerCase().includes(query) || title.toLowerCase().includes(query) || isbn.toString().includes(query) || condition.toLowerCase().includes(query)) {
           return true;
         } else {
             return false;
@@ -89,7 +90,7 @@ const SearchResultsScreen = ({ navigation }) => {
         <ImageBackground source={require('../../assets/background.png')} style={{width: '100%', height: '100%'}}>
             <View style={styles.container}>
                 <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
-                {query ? <SearchResults navigation={navigation} results={results} /> : null}
+                {results.length > 1 ? <SearchResults navigation={navigation} results={results} /> : null}
             </View>
         </ImageBackground>
     );
