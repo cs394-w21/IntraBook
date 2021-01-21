@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 30
     }
-
 });
 
 export default ItemScreen;

@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 
-const SearchButton = ({ getResults  }) => {
+const SearchButton = ({ getResults }) => {
     return (
         <TouchableOpacity
             style={styles.searchButton}
