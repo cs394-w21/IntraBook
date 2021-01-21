@@ -2,11 +2,11 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 
-const SearchButton = ({ navigation, query, setQuery  }) => {
+const SearchButton = ({ getResults  }) => {
     return (
         <TouchableOpacity
             style={styles.searchButton}
-            onPress={() => navigation.navigate('SearchResultsScreen', {query, setQuery})}
+            onPress={() => getResults()}
         >
             <Text>
                 Go

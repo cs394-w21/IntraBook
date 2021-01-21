@@ -112,9 +112,10 @@ const data = [{
 }];
 
 const SearchResultsScreen = ({ route, navigation }) => {
-    const setQuery = route.params.setQuery
-    var query = route.params.query
+    
+    
     const [results, setResults] = useState([]);
+    const [query, setQuery] = useState('');
 
     useEffect(() => {
         getResults();
@@ -130,19 +131,21 @@ const SearchResultsScreen = ({ route, navigation }) => {
     };
 
     const contains = (item, query) => {
+        if(!query) return false;
         console.log(query)
         const { author, title, isbn, condition } = item;
         console.log(title, title.includes(query))
+        
         if (author.includes(query) || title.includes(query) || isbn.toString().includes(query) || condition.includes(query)) {
           return true;
-        }
+        } 
         return false;
     };
 
     return (
         <ImageBackground source={require('../../assets/background.png')} style={{width: '100%', height: '100%'}}>
         <View style={styles.container}>
-            <SearchSection navigation={navigation} query={query} setQuery={setQuery} />
+            <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
             <SearchResults navigation={navigation} results={results} />
         </View>
         </ImageBackground>
@@ -151,6 +154,11 @@ const SearchResultsScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex:1,
     },
 });
 
