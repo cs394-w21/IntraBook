@@ -71,7 +71,7 @@ const SearchResultsScreen = ({ navigation }) => {
     const getResults = () => {
         console.log(data)
         const formattedQuery = query.toLowerCase();
-        const filteredData = data.filter(item => contains(item, formattedQuery));
+        const filteredData = data2.filter(item => contains(item, formattedQuery));
         //console.log(filteredData);
         setResults(filteredData);
     };
