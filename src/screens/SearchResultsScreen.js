@@ -9,16 +9,68 @@ const SearchResultsScreen = ({ navigation }) => {
     const [results, setResults] = useState([]);
     const [query, setQuery] = useState('');
 
+    const data = [{
+        id: 0,
+        author: "David R. Klein",
+        title: "Organic Chemistry as a Second Language: First Semester Topics, Fifth Edition 5th Edition",
+        isbn: 12343212312,
+        price: 29.00,
+        pic: require('../../assets/organic_chemistry_3.jpg'),
+        location: 'Evanston Campus, Northwestern University',
+        condition: 'Good',
+            poster: {
+            name: 'John Shepherd',
+            email: 'student1@u.northwestern',
+            phone: ''
+        }
+    },
+    {
+        id: 1,
+        author: "Arthur Winter",
+        title: "Organic Chemistry I For Dummies (For Dummies (Lifestyle)) 2nd Edition",
+        isbn: 12343212312,
+        price: 60.00,
+        pic: require('../../assets/organic_chemistry_4.jpg'),
+        location: 'Evanston Campus, Northwestern University',
+        condition: 'Mint',
+        poster: {
+            name: 'John Shepherd',
+            email: 'student1@u.northwestern',
+            phone: ''
+        }
+    },
+    {
+        id: 2,
+        author: "Arthur Winter",
+        title: "Organic Chemistry I For Dummies (For Dummies (Lifestyle)) 2nd Edition",
+        isbn: 12343212312,
+        price: 60.00,
+        pic: require('../../assets/organic_chemistry_4.jpg'),
+        location: 'Evanston Campus, Northwestern University',
+        condition: 'Mint',
+        poster: {
+            name: 'John Shepherd',
+            email: 'student1@u.northwestern',
+            phone: ''
+        }
+    }]
+
     useEffect(() => {
-        const db = firebase.database().ref();
-        db.on('value', snap => {
-          if (snap.val()) console.log(snap.val());
-        }, error => console.log(error));
-      }, []);
+        const db = firebase.database().ref('data');
+        const handleData = snap => {
+          if (snap.val()) {
+              console.log(results)
+              setResults(snap.val());
+              
+            }
+        }
+        db.on('value', handleData, error => alert(error));
+        return () => { db.off('value', handleData); };
+      }, [results]);
 
     const getResults = () => {
         const formattedQuery = query;
-        const filteredData = data.filter(item => contains(item, formattedQuery));
+        const filteredData = results.filter(item => contains(item, formattedQuery));
         setResults(filteredData);
     };
 
