@@ -121,11 +121,10 @@ const SearchResultsScreen = ({ route, navigation }) => {
     }, []);
 
     const getResults = () => {
-        console.log(query)
-        const formattedQuery = query.toLowerCase();
-        const filteredData = data.filter(item => {
-          contains(item, formattedQuery);
-        });
+        const formattedQuery = query
+        const filteredData = data.filter(item => 
+          contains(item, formattedQuery)
+        );
         console.log(filteredData)
         setResults(filteredData);
     };
@@ -133,6 +132,7 @@ const SearchResultsScreen = ({ route, navigation }) => {
     const contains = (item, query) => {
         console.log(query)
         const { author, title, isbn, condition } = item;
+        console.log(title, title.includes(query))
         if (author.includes(query) || title.includes(query) || isbn.toString().includes(query) || condition.includes(query)) {
           return true;
         }
