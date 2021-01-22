@@ -90,7 +90,7 @@ const SearchResultsScreen = ({ navigation }) => {
         <ImageBackground source={require('../../assets/background.png')} style={{width: '100%', height: '100%'}}>
             <View style={styles.container}>
                 <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
-                {results.length > 1 ? <SearchResults navigation={navigation} results={results} /> : null}
+                {results.length > 0 ? <SearchResults navigation={navigation} results={results} /> : null}
             </View>
         </ImageBackground>
     );
@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         flex: 1,
         marginTop: 20,
     },
