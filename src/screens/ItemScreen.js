@@ -8,7 +8,7 @@ const ItemScreen = ({route, navigation}) => {
     return (
         <ScrollView style = {styles.container}>
             <Text style = {styles.title}>{item.title}</Text>
-            <Image source = {eval(item.pic)} style = {styles.pic}></Image>
+            <Image source = {item.pic} style = {styles.pic} />
             <Text>Author: {item.author}</Text>
             <Text>ISBN: {item.isbn}</Text>
             <Text style = {styles.price}>${item.price} ({item.condition})</Text>

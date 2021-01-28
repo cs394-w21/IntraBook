@@ -61,7 +61,8 @@ const SearchResultsScreen = ({ navigation }) => {
     useEffect(() => {
         const handleData = snap => {
           if (snap.val())
-            setData(snap.val().data);
+            {   console.log(snap.val().data[0])
+                setData(snap.val().data);}
         }
         db.on('value', handleData, error => alert(error));
         return () => { db.off('value', handleData); };

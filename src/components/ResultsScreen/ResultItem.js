@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import ItemScreen from '../../screens/ItemScreen';
+//require('../../../assets/adaptive-icon.png')
 
 const ResultItem = ({ navigation, item }) => {
     return (
@@ -9,7 +10,8 @@ const ResultItem = ({ navigation, item }) => {
             onPress={() => navigation.navigate('ItemScreen', {item})}
         >
             <Image
-                source = {item.pic}
+                // source={eval(item.pic)}
+                source={{uri: '../../../assets/adaptive-icon.png'}}
                 style={styles.image}
             />
             <View>
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10
       },
       title: {
-          paddingLeft: 10
+          paddingLeft: 10,
       },
       price: {
           paddingLeft: 10
