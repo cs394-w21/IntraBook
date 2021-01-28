@@ -56,23 +56,21 @@ const SearchResultsScreen = ({ navigation }) => {
     //     }
     // }];
 
+    const db = firebase.database().ref();
+
     useEffect(() => {
-        const db = firebase.database().ref('data');
         const handleData = snap => {
-          if (snap.val()) setData(snap.val());
+          if (snap.val())
+            setData(snap.val().data);
         }
-        db.on('value', handleData, error => console.log(error));
+        db.on('value', handleData, error => alert(error));
         return () => { db.off('value', handleData); };
       }, []);
 
-    //data ? null : setData(data2);
-
 
     const getResults = () => {
-        console.log(data)
         const formattedQuery = query.toLowerCase();
         const filteredData = data.filter(item => contains(item, formattedQuery));
-        //console.log(filteredData);
         setResults(filteredData);
     };
 
@@ -85,7 +83,6 @@ const SearchResultsScreen = ({ navigation }) => {
             return false;
         }
     };
-    console.log(results);
     return (
         <ImageBackground source={require('../../assets/background.png')} style={{width: '100%', height: '100%'}}>
             <View style={styles.container}>
