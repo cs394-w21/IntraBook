@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import CartItems from './SearchScreen/CartItems';
 
 const Header = ({ displayCart, cart, setDisplayCart }) => {
@@ -11,9 +11,11 @@ const Header = ({ displayCart, cart, setDisplayCart }) => {
 
     return (
         <View  style={styles.container}>
-            <TouchableOpacity onPress={() => toggleCart()} style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
+        <TouchableOpacity onPress={() => toggleCart()} style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
+            <Text>
                 Cart ({cart.length})
-            </TouchableOpacity>
+            </Text>
+        </TouchableOpacity>
             { displayCart ? <CartItems data={cart}/> : null }
         </View>
     );

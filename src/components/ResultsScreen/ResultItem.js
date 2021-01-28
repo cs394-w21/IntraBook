@@ -1,19 +1,27 @@
-import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import ItemScreen from '../../screens/ItemScreen';
-//require('../../../assets/adaptive-icon.png')
+import React, { useState, useEffect } from 'react';
+import { firebase } from '../../../firebase';
+
 
 const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCart}) => {
+    // const ref = firebase.storage().ref('/'+item.isbn+'.jpg');
+    const [imageUrl, setImageUrl] = useState(undefined);
+
+    useEffect(() => {
+        firebase.storage()
+        .ref('/' + item.isbn+'.jpg') //name in storage in firebase console
+        .getDownloadURL()
+        .then((url) => {
+            setImageUrl(url);
+        })
+        .catch((e) => console.log('Errors while downloading => ', e));
+    }, []);
     return (
         <TouchableOpacity
             style={styles.container}
             onPress={() => navigation.navigate('ItemScreen', {item, setCart, cart, displayCart, setDisplayCart})}
         >
-            <Image
-                // source={eval(item.pic)}
-                source={{uri: '../../../assets/adaptive-icon.png'}}
-                style={styles.image}
-            />
+            <Image style={{height: 50, width: 50}} source={{uri: imageUrl}} />
             <View>
                 <Text style = {styles.title}>{item.title}</Text>
                 <Text style = {styles.author}>{item.author}</Text>
@@ -21,6 +29,7 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
             </View>
         </TouchableOpacity>
     );
+    
 };
 
 const styles = StyleSheet.create({

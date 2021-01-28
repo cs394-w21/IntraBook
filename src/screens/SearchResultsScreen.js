@@ -61,6 +61,8 @@ const SearchResultsScreen = ({ navigation }) => {
     // }];
 
     const db = firebase.database().ref();
+    const storage = firebase.storage().ref();
+    console.log(storage)
 
     useEffect(() => {
         const handleData = snap => {
