@@ -8,7 +8,8 @@ const SearchBar = ({ query, setQuery }) => {
           backgroundColor: '#333333',
           padding: 10,
           borderRadius: 20,
-          width: '80%'
+          width: '70%',
+          height: '60%'
         }}
       >
         <TextInput
@@ -19,7 +20,7 @@ const SearchBar = ({ query, setQuery }) => {
           onChangeText={queryText => setQuery(queryText)}
           placeholder="Author, Course Number, Book Name, etc..."
           placeholderTextColor='grey'
-          style={{ backgroundColor: '#333333', color: 'white'}}
+          style={{ backgroundColor: '#333333', color: 'white', height:'100%', fontSize:'100%'}}
         />
       </View>
     );

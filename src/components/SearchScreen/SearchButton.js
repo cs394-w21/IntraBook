@@ -9,7 +9,7 @@ const SearchButton = ({ getResults }) => {
             onPress={() => getResults()}
         >
             <Text>
-                Go
+                GO
             </Text>
         </TouchableOpacity>
     );
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-        height: 40,
+        height: 50,
         padding: 10,
-        minWidth: 40,
-        maxWidth: 40,
+        minWidth: 50,
+        maxWidth: 50,
         backgroundColor: '#66b0ff',
     },
 });

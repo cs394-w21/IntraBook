@@ -21,8 +21,10 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
             style={styles.container}
             onPress={() => navigation.navigate('ItemScreen', {item, setCart, cart, displayCart, setDisplayCart})}
         >
-            <Image style={{height: 50, width: 50}} source={{uri: imageUrl}} />
-            <View>
+            <View style={{padding:'1%'}}>
+                <Image style={styles.image} source={{uri: imageUrl}} />
+            </View>
+            <View style={styles.item}>
                 <Text style = {styles.title}>{item.title}</Text>
                 <Text style = {styles.author}>{item.author}</Text>
                 <Text style = {styles.price}>${item.price}</Text>
@@ -34,28 +36,20 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 10,
+        padding: '1.5%',
         flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: '10%',
-        paddingRight: '15%',
+        alignSelf: 'flex-start'
+      },
+      item: {
+        padding: '1%',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        width: '75%'
       },
       image: {
-        width: 65,
-        height: 65,
+        height: 70,
+        width: 70,
       },
-      author: {
-          paddingLeft: 10
-      },
-      author: {
-        paddingLeft: 10
-      },
-      title: {
-          paddingLeft: 10,
-      },
-      price: {
-          paddingLeft: 10
-      }
 
 });
 

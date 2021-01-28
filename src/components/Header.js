@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignSelf: 'flex-end',
         alignItems: 'flex-end',
-        margin: '3%'
+        margin: '1%'
     },
 });
 

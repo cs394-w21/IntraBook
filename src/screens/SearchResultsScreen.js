@@ -62,7 +62,6 @@ const SearchResultsScreen = ({ navigation }) => {
 
     const db = firebase.database().ref();
     const storage = firebase.storage().ref();
-    console.log(storage)
 
     useEffect(() => {
         const handleData = snap => {
@@ -98,7 +97,6 @@ const SearchResultsScreen = ({ navigation }) => {
 
             <View style={styles.container}>
                 <Header displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart}/>
-                
                 <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
                 {results.length > 0 ? <SearchResults displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} navigation={navigation} results={results} setCart={setCart}/> : null}
                 {/* <TouchableOpacity style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
@@ -111,13 +109,9 @@ const SearchResultsScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: '100%',
+        flexDirection: 'Column'
         // alignItems: 'center',
         // justifyContent: 'center',
-        flex: 1,
-        marginTop: 20,
-        alignItems: "center"
     },
 });
 

@@ -18,12 +18,8 @@ const SearchResults = ({ navigation, results, setCart, displayCart, cart, setDis
 
 const styles = StyleSheet.create({
     itemList: {
-        marginLeft:'3%',
-        marginRight:'3%',
-        marginTop: '0%',
-        paddingRight: '5%',
-        marginBottom: '25%',
-        backgroundColor: 'white'
+        margin:'5%',
+        backgroundColor: '#dedcdc'
     },
 });
 

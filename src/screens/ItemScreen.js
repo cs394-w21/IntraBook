@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView} from 'react-native';
-import { set } from 'react-native-reanimated';
 import AddCartButton from '../components/ItemScreen/AddCartButton.js';
 import MessageButton from '../components/ItemScreen/MessageButton.js';
 import Header from '../components/Header'
@@ -27,39 +26,50 @@ const ItemScreen = ({route, navigation}) => {
     }, []);
 
     return (
-        <ScrollView style = {styles.container}>
-            {/* <Header displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart}/> */}
-            <Text style = {styles.title}>{item.title}</Text>
-            <Image source = {{uri:imageUrl}} style = {styles.pic} />
-            <Text>Author: {item.author}</Text>
-            <Text>ISBN: {item.isbn}</Text>
-            <Text style = {styles.price}>${item.price} ({item.condition})</Text>
-            <Text style = {{paddingTop: 5}}>Sold by: {item.poster.name}</Text>
-            <View style ={{flexDirection: 'row', padding: 5}}>
-                <Image source={require('../../assets/location.png')} style= {{ width: 20, height: 20, resizeMode: 'contain'}}></Image>
-                <Text style={{paddingLeft: 10}}>{item.location}</Text>
+        <ScrollView contentContainerStyle = {styles.container}>
+            <View style = {{alignContent:'flex-start', flexDirection: 'column', flex:1, alignItems: 'flex-start'}}>
+                {/* <Header displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart}/> */}
+                <Text style = {styles.title}>{item.title}</Text>
+                <View style={{width:'100%', alignItems:'flex-start', alignContent:'flex-start', justifyContent:'flex-start', marginTop: '5%', marginBottom:'5%'}}>
+                    <Image source = {{uri:imageUrl}} style = {styles.pic} />
+                </View>
+                <Text>Author: {item.author}</Text>
+                <Text>ISBN: {item.isbn}</Text>
+                <Text style = {styles.price}>${item.price} ({item.condition})</Text>
+                <Text style = {{paddingTop: 5}}>Sold by: {item.poster.name}</Text>
+                <View style ={{flexDirection: 'row', padding: 5}}>
+                    <Image source={require('../../assets/location.png')} style= {{ width: 20, height: 20, resizeMode: 'contain'}}></Image>
+                    <Text style={{paddingLeft: 10}}>{item.location}</Text>
+                </View>
+                <View style = {{
+                    flex:1,
+                    flexDirection: 'row', width:'100%', justifyContent: 'flex-start', marginBottom: 10}}>
+                    <AddCartButton cart={cart} setCart={setCart} item={item} setCartNotif={setCartNotif}/>
+                    <MessageButton/>
+                </View>
+                {cartNotif ? <Text style={{color: "green"}}>item added to cart</Text> : null}
             </View>
-            <View style = {{
-                flexDirection: 'row', width:'60%', justifyContent: 'space-evenly', marginBottom: 10}}>
-                <AddCartButton cart={cart} setCart={setCart} item={item} setCartNotif={setCartNotif}/>
-                <MessageButton/>
-            </View>
-            {cartNotif ? <Text style={{color: "green"}}>item added to cart</Text> : null}
-            
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        padding: '10%',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '5%',
+        width: '100%',
+        backgroundColor: '#dedcdc'
     },
     title: {
-        fontSize: 25
+        fontSize: 30   
     },
     pic: {
-        resizeMode:'contain',
-        width: '100%',
+        flexDirection: 'row',
+        width: 390,
+        resizeMode: 'contain',
+        justifyContent: 'flex-start',
+        height: 500
     },
     price: {
         marginTop: 10,
