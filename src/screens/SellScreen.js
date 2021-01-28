@@ -2,14 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ImageBackground, StyleSheet, View, TouchableOpacity } from 'react-native';
 import SearchResults from '../components/ResultsScreen/SearchResults';
 import SearchSection from '../components/SearchScreen/SearchSection';
-import Header from '../components/Header'
 import { firebase } from '../../firebase';
 
 
-
-const SearchResultsScreen = ({ navigation }) => {
-    const [cart, setCart] = useState([])
-    const [displayCart, setDisplayCart] = useState(false)
+const SellScreen = ({ navigation }) => {
     const [data, setData] = useState([]);
     const [results, setResults] = useState([]);
     const [query, setQuery] = useState('');
@@ -66,10 +62,7 @@ const SearchResultsScreen = ({ navigation }) => {
         const handleData = snap => {
           if (snap.val())
             {   console.log(snap.val().data[0])
-                
-                setData(snap.val().data);
-                //setCart(snap.val().data)
-            }
+                setData(snap.val().data);}
         }
         db.on('value', handleData, error => alert(error));
         return () => { db.off('value', handleData); };
@@ -93,15 +86,12 @@ const SearchResultsScreen = ({ navigation }) => {
     };
     return (
         <ImageBackground source={require('../../assets/background.png')} style={{width: '100%', height: '100%'}}>
-
             <View style={styles.container}>
-                <Header displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart}/>
-                
                 <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
-                {results.length > 0 ? <SearchResults displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} navigation={navigation} results={results} setCart={setCart}/> : null}
-                {/* <TouchableOpacity style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
+                {results.length > 0 ? <SearchResults navigation={navigation} results={results} /> : null}
+                <TouchableOpacity style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
                     Sell Books
-                </TouchableOpacity> */}
+                </TouchableOpacity>
             </View>
         </ImageBackground>
     );
@@ -119,4 +109,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SearchResultsScreen;
+export default SellScreen;

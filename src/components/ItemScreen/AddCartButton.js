@@ -1,10 +1,16 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const AddCartButton = ({ navigation }) => {
+const AddCartButton = ({ navigation, setCart, item, cart, setCartNotif }) => {
+    const handleCart = () => {
+        setCart([...cart, item])
+        setCartNotif(true)
+        console.log([...cart, item])
+    }
     return (
         <TouchableOpacity
             style={styles.addCartButton}
+            onPress={() => handleCart()}
         >
             <Text>
                 Add to Cart

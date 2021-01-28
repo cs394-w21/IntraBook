@@ -6,6 +6,7 @@ import ItemScreen from '../screens/ItemScreen';
 const Stack = createStackNavigator();
 
 const SearchStackNavigator = () => {
+    
     return (
         <Stack.Navigator>
             <Stack.Screen name='SearchResultsScreen' component={SearchResultsScreen} options={{headerShown: false, title: ''}} />

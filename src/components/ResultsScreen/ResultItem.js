@@ -3,11 +3,11 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import ItemScreen from '../../screens/ItemScreen';
 //require('../../../assets/adaptive-icon.png')
 
-const ResultItem = ({ navigation, item }) => {
+const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCart}) => {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={() => navigation.navigate('ItemScreen', {item})}
+            onPress={() => navigation.navigate('ItemScreen', {item, setCart, cart, displayCart, setDisplayCart})}
         >
             <Image
                 // source={eval(item.pic)}

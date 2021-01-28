@@ -1,14 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, ScrollView} from 'react-native';
+import { set } from 'react-native-reanimated';
 import AddCartButton from '../components/ItemScreen/AddCartButton.js';
 import MessageButton from '../components/ItemScreen/MessageButton.js';
+import Header from '../components/Header'
 
 const ItemScreen = ({route, navigation}) => {
     const item = route.params.item;
+    const setCart = route.params.setCart;
+    const displayCart = route.params.displayCart;
+    const cart = route.params.cart;
+    const setDisplayCart = route.params.setDisplayCart;
+    const [cartNotif, setCartNotif] = useState(false)
     return (
         <ScrollView style = {styles.container}>
+            {/* <Header displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart}/> */}
             <Text style = {styles.title}>{item.title}</Text>
-            <Image source = {item.pic} style = {styles.pic} />
+            {/* <Image source = {item.pic} style = {styles.pic} /> */}
             <Text>Author: {item.author}</Text>
             <Text>ISBN: {item.isbn}</Text>
             <Text style = {styles.price}>${item.price} ({item.condition})</Text>
@@ -18,10 +26,11 @@ const ItemScreen = ({route, navigation}) => {
                 <Text style={{paddingLeft: 10}}>{item.location}</Text>
             </View>
             <View style = {{
-                flexDirection: 'row', width:'60%', justifyContent: 'space-evenly', marginBottom: '20%'}}>
-                <AddCartButton/>
+                flexDirection: 'row', width:'60%', justifyContent: 'space-evenly', marginBottom: 10}}>
+                <AddCartButton cart={cart} setCart={setCart} item={item} setCartNotif={setCartNotif}/>
                 <MessageButton/>
             </View>
+            {cartNotif ? <Text style={{color: "green"}}>item added to cart</Text> : null}
             
         </ScrollView>
     );
