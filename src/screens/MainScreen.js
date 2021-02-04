@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ImageBackground, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import SearchResults from '../components/ResultsScreen/SearchResults';
-import SearchSection from '../components/SearchScreen/SearchSection';
+import SearchSection from '../components/MainScreen/SearchSection';
 import Header from '../components/Header'
 import { firebase } from '../../firebase';
 
@@ -45,17 +45,14 @@ const MainScreen = ({ navigation }) => {
         }
     };
     return (
-        <ImageBackground source={require('../../assets/background.png')} style={{width: '100%', height: '100%'}}>
+        <ImageBackground source={require('../../assets/background.png')} style={styles.mainContainer}>
 
             <View style={styles.container}>
-                <Header displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} />
-                <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
-                {results ? <SearchResults displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} navigation={navigation} results={results} setCart={setCart} /> : null}
-                <TouchableOpacity style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
-                    <Text>
-                        Sell Books
-                    </Text>
-                </TouchableOpacity>
+                <Header navigation={navigation} displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} />
+                <View style={styles.bodyContainer}>
+                    <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
+                    {results ? <SearchResults displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} navigation={navigation} results={results} setCart={setCart} /> : null}
+                </View>
             </View>
         </ImageBackground>
     );
@@ -63,10 +60,18 @@ const MainScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        padding: '5%'
         // alignItems: 'center',
         // justifyContent: 'center',
     },
+    mainContainer: {
+        width: '100%', 
+        height: '100%',
+    },
+    bodyContainer: {
+        top: 20
+    }
 });
 
 export default MainScreen;

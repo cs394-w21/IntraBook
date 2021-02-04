@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, TouchableHighlight, Modal } from 'react-native';
-import CartItems from './SearchScreen/CartItems';
+import CartItems from './MainScreen/CartItems';
 
-const Header = ({ displayCart, cart, setDisplayCart }) => {
+const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
     const toggleCart = () => {
         console.log(cart)
         displayCart ? setDisplayCart(false) : setDisplayCart(true)
@@ -11,6 +11,13 @@ const Header = ({ displayCart, cart, setDisplayCart }) => {
 
     return (
         <View style={styles.container}>
+
+            <TouchableOpacity onPress={() => navigation.navigate('SellScreen')} style={{borderRadius: 10, color: "white", backgroundColor: "#fa953c", width: 100, padding: 10, alignItems: "center"}}>
+                <Text >
+                    Sell Books
+                </Text>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => toggleCart()} style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
                 <Text>
                     Cart ({cart.length})
@@ -66,10 +73,8 @@ const styles = StyleSheet.create({
         marginTop: 22
     },
     container: {
-        flexDirection: 'column',
-        alignSelf: 'flex-end',
-        alignItems: 'flex-end',
-        marginTop: 50,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         position: 'relative',
     },
     openButton: {
