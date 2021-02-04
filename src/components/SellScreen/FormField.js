@@ -14,7 +14,7 @@ const FormField = ({ label, placeholder }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                //value={query}
+                // value={query}
                 // onChangeText={queryText => setQuery(queryText)}
                 placeholder={placeholder}
                 placeholderTextColor='grey'

@@ -8,6 +8,9 @@ const SellScreen = ({ navigation }) => {
     return (
          
         <View>
+            <FormField label={'Title'} placeholder={'Enter Name of Book'}/>
+            <FormField label={''} placeholder={'Name'}/>
+            <FormField label={'Name'} placeholder={'Name'}/>
             <FormField label={'Name'} placeholder={'Name'}/>
         </View>
     );
