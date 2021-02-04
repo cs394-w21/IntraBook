@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         minWidth: 50,
         maxWidth: 50,
         backgroundColor: '#66b0ff',
+        left: 11,
     },
 });
 

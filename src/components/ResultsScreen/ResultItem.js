@@ -36,17 +36,19 @@ const styles = StyleSheet.create({
     container: {
         padding: '1.5%',
         flexDirection: 'row',
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start',
+        borderRadius: 5,
       },
       item: {
         //padding: '1%',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        width: '75%'
+        width: '75%',
+        padding: 5,
       },
       image: {
-        height: 70,
-        width: 70,
+        height: 80,
+        width: 80,
       },
 
 });

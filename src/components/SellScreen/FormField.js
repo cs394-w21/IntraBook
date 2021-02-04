@@ -4,8 +4,8 @@ import { StyleSheet, View, TextInput, Text } from 'react-native';
 const FormField = ({ label, placeholder }) => {
 
     return (
-        <View style={styles.txt}>
-            <Text style={styles.label}>
+        <View style={styles.inputContainer}>
+            <Text >
                 {label}
             </Text>
             <TextInput 
@@ -16,7 +16,7 @@ const FormField = ({ label, placeholder }) => {
                 // onChangeText={queryText => setQuery(queryText)}
                 placeholder={placeholder}
                 placeholderTextColor='grey'
-                style={styles.textStyle}/>
+                style={styles.input}/>
         </View>
     );
 };
@@ -37,6 +37,30 @@ const styles = StyleSheet.create({
         color: 'white', 
         height: 20, 
         padding: 15,
+    },
+    input: {
+        height: 40,
+        width: 300,
+        paddingHorizontal: 5,
+        backgroundColor: 'white',
+        marginBottom: 5,
+        borderRadius: 5,
+        top: 5,
+    },
+    inputContainer: {
+        marginBottom: 20,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+    },
+    error: {
+        textAlign: 'center', 
+        height: 17.5,
     },
 });
 

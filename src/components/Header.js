@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, TouchableHighlight, Modal } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, View, TouchableOpacity, TouchableHighlight, Modal } from 'react-native';
 import CartItems from './MainScreen/CartItems';
 
 const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
@@ -10,7 +10,7 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
     }
 
     return (
-        <View>
+        <SafeAreaView style={styles.safeViewStyle}>
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => navigation.navigate('SellScreen')} style={styles.sellButton}>
                     <Text >
@@ -46,7 +46,7 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
             </Modal>
             :
             null}
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -59,6 +59,9 @@ const openButton = {
 };
 
 const styles = StyleSheet.create({
+    safeViewStyle: {
+        // if needed
+    },
     cartModal: {
         margin: 20,
         backgroundColor: "white",

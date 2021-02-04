@@ -8,7 +8,7 @@ const SearchBar = ({ query, setQuery }) => {
           backgroundColor: '#333333',
           padding: 10,
           borderRadius: 20,
-          width: '70%',
+          width: '80%',
           height: '60%'
         }}
       >

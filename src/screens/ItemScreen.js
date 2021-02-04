@@ -32,12 +32,30 @@ const ItemScreen = ({route, navigation}) => {
                 <View style={styles.bookImageView}>
                     <Image source={{uri:imageUrl}} style = {styles.pic} />
                 </View>
-                <Text>Author: {item.author}</Text>
-                <Text>ISBN: {item.isbn}</Text>
-                <Text style={styles.price}>${item.price} ({item.condition})</Text>
-                <Text style={{paddingTop: 5}}>Sold by: {item.poster.name}</Text>
+                <View style={styles.detailContainer}>
+                    <Text style={styles.wordStyle}>
+                        <Text style={styles.boldWord}>Author: </Text> 
+                        {item.author}
+                    </Text>
+                    <Text style={styles.wordStyle}>
+                        <Text style={styles.boldWord}>ISBN: </Text> 
+                        {item.isbn}
+                    </Text>
+                    <Text style={styles.wordStyle}>
+                        <Text style={styles.boldWord}>Price: </Text> 
+                        ${item.price} 
+                    </Text>
+                    <Text style={styles.wordStyle}>
+                        <Text style={styles.boldWord}>Condition: </Text> 
+                        {item.condition}
+                    </Text>
+                    <Text style={styles.wordStyle}>
+                    <Text style={styles.boldWord}>Sold By: </Text> 
+                        {item.poster.name}
+                    </Text>
+                </View>
                 <View style={styles.locationView}>
-                    <Image source={require('../../assets/location.png')} style= {styles.locationImages}></Image>
+                    <Image source={require('../../assets/location.png')} style= {styles.locationImage}></Image>
                     <Text style={{paddingLeft: 10}}>{item.location}</Text>
                 </View>
                 <View style={styles.addToCartButton}>
@@ -56,10 +74,23 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: '5%',
         width: '100%',
-        backgroundColor: '#dedcdc'
+        backgroundColor: '#dedcdc',
+    },
+    viewContainer: {
+        alignContent:'flex-start', 
+        flexDirection: 'column', 
+        flex:1, 
+        alignItems: 'flex-start',
+    },
+    detailContainer: {
+        flexDirection: 'row',
+        flex: 1,
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
     title: {
-        // fontSize: 30,
+         fontSize: 25,
+         fontFamily: 'Helvetica Neue',
     },
     pic: {
         flexDirection: 'row',
@@ -68,9 +99,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         height: 500
     },
-    price: {
-        marginTop: 10,
-    },
     addToCartButtonNotif: {
         color: "green",
     },
@@ -78,12 +106,16 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: 'row', 
         width:'100%', 
-        justifyContent: 'flex-start', 
+        justifyContent: 'flex-start',
         marginBottom: 10,
+        paddingLeft: 70,
     },
     locationView: {
         flexDirection: 'row',
-        padding: 5,
+        padding: 15,
+        fontSize: 15,
+        fontFamily: 'Helvetica Neue',
+        alignItems: 'center',
     },
     locationImage: { 
         width: 20, 
@@ -98,10 +130,13 @@ const styles = StyleSheet.create({
         marginTop: '5%', 
         marginBottom:'5%',
     },
-    viewContainer: {
-        alignContent:'flex-start', 
-        flexDirection: 'column', 
-        flex:1, alignItems: 'flex-start',
+    wordStyle: {
+        padding: 1.5,
+        fontSize: 15,
+        fontFamily: 'Helvetica Neue',
+    },
+    boldWord: {
+        fontWeight: 'bold',
     },
 });
 

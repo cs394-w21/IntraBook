@@ -5,11 +5,15 @@ import FormField from '../components/SellScreen/FormField'
 const SellScreen = ({ navigation }) => {
    
     return (
-        <View>
-            <FormField label={'Title'} placeholder={'Enter Name of Book'}/>
-            <FormField label={''} placeholder={'Name'}/>
-            <FormField label={'Name'} placeholder={'Name'}/>
-            <FormField label={'Name'} placeholder={'Name'}/>
+        <View style={styles.container1}>
+            <FormField label={'Your Full Name'} placeholder={'First, Last'}/>
+            <FormField label={'Your Email'} placeholder={'YourEmail@you.edu'}/>
+            <FormField label={'Book Title'} placeholder={'Title'}/>
+            <FormField label={'Book Author'} placeholder={'Author'}/>
+            <FormField label={'ISBN'} placeholder={'ISBN'}/>
+            <FormField label={'Book Price'} placeholder={'Price'}/>
+            <FormField label={'LOCATION?'} placeholder={''}/>
+            <FormField label={'PIC_UPLOAD'} placeholder={''}/>
         </View>
     );
 };
@@ -20,7 +24,18 @@ const styles = StyleSheet.create({
         height: '100%',
         flex: 1,
         marginTop: 20,
-        alignItems: "center"
+        alignItems: "center",
+    },
+    container1: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 15,
+        bottom: 20,
+    },
+    errorMsg: {
+        marginBottom: 20,
+        height: 17.5,
     },
 });
 

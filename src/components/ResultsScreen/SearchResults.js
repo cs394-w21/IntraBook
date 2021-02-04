@@ -26,7 +26,8 @@ const SearchResults = ({ navigation, results, setCart, displayCart, cart, setDis
 const styles = StyleSheet.create({
     itemList: {
         margin:'5%',
-        backgroundColor: '#dedcdc'
+        backgroundColor: 'lightgrey',
+        borderRadius: 5,
     },
     txt: {
         color: 'white',
