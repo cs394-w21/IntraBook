@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { TextInput, View } from 'react-native';
+
 
 const SearchBar = ({ query, setQuery }) => {
     return (
@@ -20,7 +21,7 @@ const SearchBar = ({ query, setQuery }) => {
           onChangeText={queryText => setQuery(queryText)}
           placeholder="Author, Course Number, Book Name, etc..."
           placeholderTextColor='grey'
-          style={{ backgroundColor: '#333333', color: 'white', height:'100%', fontSize:'100%'}}
+          style={{ backgroundColor: '#333333', color: 'white', height: 20 }}
         />
       </View>
     );

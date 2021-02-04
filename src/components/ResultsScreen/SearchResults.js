@@ -1,10 +1,18 @@
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, Text } from 'react-native';
 import ResultItem from './ResultItem';
 
 
 const SearchResults = ({ navigation, results, setCart, displayCart, cart, setDisplayCart }) => {
+    console.log(results);
+
     return (
+        (results.length == 0)
+        ?
+        <Text style={styles.txt}>
+            Zero. Absolutely none.
+        </Text>
+        :
         <FlatList
                 style={styles.itemList}
                 data={results}
@@ -21,6 +29,9 @@ const styles = StyleSheet.create({
         margin:'5%',
         backgroundColor: '#dedcdc'
     },
+    txt: {
+        color: 'white',
+    }
 });
 
 export default SearchResults;

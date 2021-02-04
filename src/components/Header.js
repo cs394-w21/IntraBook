@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, TouchableHighlight, Modal } from 'react-native';
 import CartItems from './SearchScreen/CartItems';
 
 const Header = ({ displayCart, cart, setDisplayCart }) => {
@@ -10,23 +10,74 @@ const Header = ({ displayCart, cart, setDisplayCart }) => {
     }
 
     return (
-        <View  style={styles.container}>
-        <TouchableOpacity onPress={() => toggleCart()} style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
-            <Text>
-                Cart ({cart.length})
-            </Text>
-        </TouchableOpacity>
-            { displayCart ? <CartItems data={cart}/> : null }
+        <View style={styles.container}>
+            <TouchableOpacity onPress={() => toggleCart()} style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
+                <Text>
+                    Cart ({cart.length})
+                </Text>
+            </TouchableOpacity>
+            {/* { displayCart ? <CartItems data={cart}/> : null } */}
+            {displayCart
+            ?
+            <Modal
+                animationType="slide"
+                transparent={true}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.cartModal}>
+                        <CartItems data={cart} />
+                        <TouchableHighlight
+                            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                            onPress={() => {
+                                toggleCart();
+                            }}
+                        >
+                            <Text style={styles.textStyle}>Close Cart</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+            </Modal>
+            :
+            null}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    cartModal: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
     container: {
         flexDirection: 'column',
         alignSelf: 'flex-end',
         alignItems: 'flex-end',
-        margin: '1%'
+        marginTop: 50,
+        position: 'relative',
+    },
+    openButton: {
+        backgroundColor: "#F194FF",
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+        top: 10,
     },
 });
 

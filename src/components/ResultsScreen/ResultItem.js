@@ -25,9 +25,10 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
                 <Image style={styles.image} source={{uri: imageUrl}} />
             </View>
             <View style={styles.item}>
-                <Text style = {styles.title}>{item.title}</Text>
-                <Text style = {styles.author}>{item.author}</Text>
-                <Text style = {styles.price}>${item.price}</Text>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.author}>{item.author}</Text>
+                <Text style={styles.price}>${item.price}</Text>
+                <Text style={styles.condition}>{item.condition}</Text>
             </View>
         </TouchableOpacity>
     );

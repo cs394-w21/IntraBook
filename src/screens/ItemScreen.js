@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#dedcdc'
     },
     title: {
-        fontSize: 30   
+        // fontSize: 30,
     },
     pic: {
         flexDirection: 'row',
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     price: {
         marginTop: 10,
-        fontSize: 30
+        // fontSize: 30,
     }
 });
 
