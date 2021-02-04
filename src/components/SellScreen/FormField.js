@@ -1,7 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import {TextInput, Text} from 'react-native-web';
-
+import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 const FormField = ({ label, placeholder }) => {
 
@@ -18,7 +16,7 @@ const FormField = ({ label, placeholder }) => {
                 // onChangeText={queryText => setQuery(queryText)}
                 placeholder={placeholder}
                 placeholderTextColor='grey'
-                style={{ backgroundColor: '#333333', color: 'white', height: 20, padding: 15 }}/>
+                style={styles.textStyle}/>
         </View>
     );
 };
@@ -29,12 +27,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#dedcdc'
     },
     label: {
-
         backgroundColor: 'grey',
         padding: 10,
         color: "white",
         fontWeight: "bold"
-    }
+    }, 
+    textStyle: {
+        backgroundColor: '#333333', 
+        color: 'white', 
+        height: 20, 
+        padding: 15,
+    },
 });
 
 export default FormField;

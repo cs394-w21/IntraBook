@@ -12,7 +12,6 @@ const MainScreen = ({ navigation }) => {
     const [data, setData] = useState([]);
     const [results, setResults] = useState(null);
     const [query, setQuery] = useState('');
-
     const db = firebase.database().ref();
     const storage = firebase.storage().ref();
 
@@ -46,7 +45,6 @@ const MainScreen = ({ navigation }) => {
     };
     return (
         <ImageBackground source={require('../../assets/background.png')} style={styles.mainContainer}>
-
             <View style={styles.container}>
                 <Header navigation={navigation} displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} />
                 <View style={styles.bodyContainer}>

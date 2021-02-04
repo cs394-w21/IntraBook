@@ -27,27 +27,24 @@ const ItemScreen = ({route, navigation}) => {
 
     return (
         <ScrollView contentContainerStyle = {styles.container}>
-            <View style = {{alignContent:'flex-start', flexDirection: 'column', flex:1, alignItems: 'flex-start'}}>
-                {/* <Header displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart}/> */}
-                <Text style = {styles.title}>{item.title}</Text>
-                <View style={{width:'100%', alignItems:'flex-start', alignContent:'flex-start', justifyContent:'flex-start', marginTop: '5%', marginBottom:'5%'}}>
-                    <Image source = {{uri:imageUrl}} style = {styles.pic} />
+            <View style={styles.viewContainer}>
+                <Text style={styles.title}>{item.title}</Text>
+                <View style={styles.bookImageView}>
+                    <Image source={{uri:imageUrl}} style = {styles.pic} />
                 </View>
                 <Text>Author: {item.author}</Text>
                 <Text>ISBN: {item.isbn}</Text>
-                <Text style = {styles.price}>${item.price} ({item.condition})</Text>
-                <Text style = {{paddingTop: 5}}>Sold by: {item.poster.name}</Text>
-                <View style ={{flexDirection: 'row', padding: 5}}>
-                    <Image source={require('../../assets/location.png')} style= {{ width: 20, height: 20, resizeMode: 'contain'}}></Image>
+                <Text style={styles.price}>${item.price} ({item.condition})</Text>
+                <Text style={{paddingTop: 5}}>Sold by: {item.poster.name}</Text>
+                <View style={styles.locationView}>
+                    <Image source={require('../../assets/location.png')} style= {styles.locationImages}></Image>
                     <Text style={{paddingLeft: 10}}>{item.location}</Text>
                 </View>
-                <View style = {{
-                    flex:1,
-                    flexDirection: 'row', width:'100%', justifyContent: 'flex-start', marginBottom: 10}}>
+                <View style={styles.addToCartButton}>
                     <AddCartButton cart={cart} setCart={setCart} item={item} setCartNotif={setCartNotif}/>
                     <MessageButton/>
                 </View>
-                {cartNotif ? <Text style={{color: "green"}}>item added to cart</Text> : null}
+                {cartNotif ? <Text style={styles.addToCartButtonNotif}>Item added to cart</Text> : null}
             </View>
         </ScrollView>
     );
@@ -73,8 +70,39 @@ const styles = StyleSheet.create({
     },
     price: {
         marginTop: 10,
-        // fontSize: 30,
-    }
+    },
+    addToCartButtonNotif: {
+        color: "green",
+    },
+    addToCartButton: {
+        flex:1,
+        flexDirection: 'row', 
+        width:'100%', 
+        justifyContent: 'flex-start', 
+        marginBottom: 10,
+    },
+    locationView: {
+        flexDirection: 'row',
+        padding: 5,
+    },
+    locationImage: { 
+        width: 20, 
+        height: 20, 
+        resizeMode: 'contain',
+    },
+    bookImageView: {
+        width:'100%', 
+        alignItems:'flex-start', 
+        alignContent:'flex-start', 
+        justifyContent:'flex-start', 
+        marginTop: '5%', 
+        marginBottom:'5%',
+    },
+    viewContainer: {
+        alignContent:'flex-start', 
+        flexDirection: 'column', 
+        flex:1, alignItems: 'flex-start',
+    },
 });
 
 export default ItemScreen;

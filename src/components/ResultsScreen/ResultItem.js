@@ -2,9 +2,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { firebase } from '../../../firebase';
 
-
 const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCart}) => {
-    // const ref = firebase.storage().ref('/'+item.isbn+'.jpg');
     const [imageUrl, setImageUrl] = useState(undefined);
 
     useEffect(() => {
@@ -21,7 +19,7 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
             style={styles.container}
             onPress={() => navigation.navigate('ItemScreen', {item, setCart, cart, displayCart, setDisplayCart})}
         >
-            <View style={{padding:'1%'}}>
+            <View>
                 <Image style={styles.image} source={{uri: imageUrl}} />
             </View>
             <View style={styles.item}>
@@ -32,7 +30,6 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
             </View>
         </TouchableOpacity>
     );
-    
 };
 
 const styles = StyleSheet.create({
@@ -42,7 +39,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start'
       },
       item: {
-        padding: '1%',
+        //padding: '1%',
         flexDirection: 'column',
         alignItems: 'flex-start',
         width: '75%'

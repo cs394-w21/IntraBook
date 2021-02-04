@@ -10,19 +10,19 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
-
-            <TouchableOpacity onPress={() => navigation.navigate('SellScreen')} style={{borderRadius: 10, color: "white", backgroundColor: "#fa953c", width: 100, padding: 10, alignItems: "center"}}>
-                <Text >
-                    Sell Books
-                </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => toggleCart()} style={{borderRadius: 10, color: "white", backgroundColor: "#66b0ff", width: 100, padding: 10, alignItems: "center"}}>
-                <Text>
-                    Cart ({cart.length})
-                </Text>
-            </TouchableOpacity>
+        <View>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => navigation.navigate('SellScreen')} style={styles.sellButton}>
+                    <Text >
+                        Sell Books
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => toggleCart()} style={styles.cartButton}>
+                    <Text>
+                        Cart ({cart.length})
+                    </Text>
+                </TouchableOpacity>
+            </View>
             {/* { displayCart ? <CartItems data={cart}/> : null } */}
             {displayCart
             ?
@@ -34,7 +34,7 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
                     <View style={styles.cartModal}>
                         <CartItems data={cart} />
                         <TouchableHighlight
-                            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                            style={styles.modalStyle}
                             onPress={() => {
                                 toggleCart();
                             }}
@@ -48,6 +48,14 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
             null}
         </View>
     );
+};
+
+const openButton = {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    top: 10,
 };
 
 const styles = StyleSheet.create({
@@ -77,13 +85,26 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         position: 'relative',
     },
-    openButton: {
-        backgroundColor: "#F194FF",
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-        top: 10,
+    sellButton: {
+        borderRadius: 10, 
+        color: "white", 
+        backgroundColor: "#fa953c", 
+        width: 100, 
+        padding: 10, 
+        alignItems: "center",
     },
+    cartButton: {
+        borderRadius: 10, 
+        color: "white", 
+        backgroundColor: "#66b0ff", 
+        width: 100, 
+        padding: 10, 
+        alignItems: "center",
+    },
+    modalStyle: {
+        ...openButton, 
+        backgroundColor: "#2196F3",
+    }
 });
 
 export default Header;

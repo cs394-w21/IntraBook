@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList, StyleSheet, Text } from 'react-native';
 import ResultItem from './ResultItem';
 
-
 const SearchResults = ({ navigation, results, setCart, displayCart, cart, setDisplayCart }) => {
     console.log(results);
 
