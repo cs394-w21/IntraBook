@@ -1,9 +1,51 @@
-import React from 'react';
-import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, TextInput, Text, TouchableOpacity, Platform, Image } from 'react-native';
 import FormField from '../components/SellScreen/FormField'
 import { Icon } from 'react-native-elements'
+import * as ImagePicker from 'expo-image-picker';
 
 const SellScreen = ({ navigation }) => {
+    const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+          if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+              alert('Sorry, we need camera roll permissions to make this work!');
+            }
+          }
+        })();
+      }, []);
+    
+      const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+        }
+      };
+
+    //   const [imageUrl, setImageUrl] = useState(undefined);
+
+    // useEffect(() => {
+    //     firebase.storage()
+    //     .ref('/' + item.isbn+'.jpg') //name in storage in firebase console
+    //     .getDownloadURL()
+    //     .then((url) => {
+    //         setImageUrl(url);
+    //     })
+    //     .catch((e) => console.log('Errors while downloading => ', e));
+    // }, []);
+
+      
    
     return (
         <View style={styles.container1}>
@@ -18,12 +60,18 @@ const SellScreen = ({ navigation }) => {
             <Text>
                 Book Image
             </Text>
-            <TouchableOpacity style={styles.picButton}> 
+            <TouchableOpacity style={styles.picButton} onPress={pickImage}> 
                 <Icon
                     name='camera'
                     type='font-awesome'
                     color='#f50'
                 />
+            </TouchableOpacity>
+            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+            <TouchableOpacity style={styles.picButton} onPress={() => console.log(image)}> 
+                <Text>
+                    Submit
+                </ Text>
             </TouchableOpacity>
         </View>
     );
