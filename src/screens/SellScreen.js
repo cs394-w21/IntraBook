@@ -68,8 +68,8 @@ const SellScreen = ({ navigation }) => {
                 />
             </TouchableOpacity>
             {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-            <TouchableOpacity style={styles.picButton} onPress={() => console.log(image)}> 
-                <Text>
+            <TouchableOpacity style={styles.submitButton} onPress={() => console.log(image)}> 
+                <Text style={styles.submitText}>
                     Submit
                 </ Text>
             </TouchableOpacity>
@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
         height: 17.5,
     },
     picButton: {
-        width: 70,
-        height: 70,
+        width: 65,
+        height: 65,
         backgroundColor: 'white',
         borderRadius: 50,
         shadowColor: '#000',
@@ -110,6 +110,29 @@ const styles = StyleSheet.create({
         shadowRadius: 2.62,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    submitButton: {
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        backgroundColor: '#66b0ff',
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        width: 300,
+        elevation: 4,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 80,
+        top: 20,
+        borderRadius: 5,
+    },
+    submitText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });
 
