@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { firebase } from '../../firebase';
 import AddCartButton from '../components/ItemScreen/AddCartButton.js';
 import MessageButton from '../components/ItemScreen/MessageButton.js';
-import Header from '../components/Header'
-import { firebase } from '../../firebase';
 
 const ItemScreen = ({route, navigation}) => {
     const item = route.params.item;
@@ -17,7 +16,7 @@ const ItemScreen = ({route, navigation}) => {
 
     useEffect(() => {
         firebase.storage()
-        .ref('/' + item.isbn+'.jpg') //name in storage in firebase console
+        .ref('/post_images/' + item.id +'.jpeg') //name in storage in firebase console
         .getDownloadURL()
         .then((url) => {
             setImageUrl(url);

@@ -7,7 +7,7 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
 
     useEffect(() => {
         firebase.storage()
-        .ref('/' + item.isbn+'.jpg') //name in storage in firebase console
+        .ref('/post_images/' + item.id + '.jpeg') //name in storage in firebase console
         .getDownloadURL()
         .then((url) => {
             setImageUrl(url);
