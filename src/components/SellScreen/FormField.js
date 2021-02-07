@@ -1,8 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 
-const FormField = ({ label, placeholder }) => {
+const FormField = ({ label, placeholder, name, setData, data }) => {
 
+    const handleField = (text) => {
+        let newData = {...data}
+        newData[name] = text
+        setData(newData)
+    }
+    
     return (
         <View style={styles.inputContainer}>
             <Text >
@@ -13,7 +19,7 @@ const FormField = ({ label, placeholder }) => {
                 autoCorrect={false}
                 clearButtonMode="always"
                 // value={query}
-                // onChangeText={queryText => setQuery(queryText)}
+                onChangeText={text => handleField(text)}
                 placeholder={placeholder}
                 placeholderTextColor='grey'
                 style={styles.input}/>

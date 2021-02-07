@@ -3,18 +3,31 @@ import React, { useEffect, useState } from 'react';
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import FormField from '../components/SellScreen/FormField';
-import nextId from "react-id-generator";
 import { firebase } from '../../firebase';
 
-import ImagePicker from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 
+var uuid = require('react-native-uuid');
 
 
 
 const SellScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
-    const id = nextId();
-    console.log(typeof image);
+    const [data, setData] = useState({
+        author: "",
+        condition: "",
+        id: "",
+        isbn: 0,
+        location: "",
+        pic: "",
+        poster: {
+          email: "",
+          name: "",
+          phone: ""
+        },
+        price: 0,
+        title: ""
+    });
 
     useEffect(() => {
         (async () => {
@@ -43,12 +56,18 @@ const SellScreen = ({ navigation }) => {
         }
       };
 
-      const handleSumbit = async (image) => {
-          
+      const handleSumbit = async () => {
+
+        var id = uuid.v4()
+        let newData = {...data}
+        newData['id'] = id
+        setData(newData)
+
+        console.log(data)
         const path = `post_images/${id}.jpeg`;
         const metadata = {
             contentType: 'image/jpeg',
-          };
+        };
           
         return new Promise(async (res, rej) => {
           const response = await fetch(image);
@@ -71,95 +90,16 @@ const SellScreen = ({ navigation }) => {
 
       const [imageUrl, setImageUrl] = useState(undefined);
 
-    useEffect(() => {
-        firebase.storage()
-        .ref(`post_images/${id}.jpg`) //name in storage in firebase console
-        .getDownloadURL()
-        .then((url) => {
-            setImageUrl(url);
-        })
-        .catch((e) => console.log('Errors while downloading => ', e));
-    }, []);
-
-    // const handleSumbit = () => {
-    //     firebase
-    //     .storage()
-    //     .ref('/'+{id}+'.jpg')
-    //     .put(image)
-    //     .then((snapshot) => {
-    //         //You can check the image is now uploaded in the storage bucket
-    //         console.log(`${imageName} has been successfully uploaded.`);
-    //     })
-    //     .catch((e) => console.log('uploading image error => ', e));
-    // }
-
-    // const [image, setImage] = useState(null);
-    // const [uploading, setUploading] = useState(false);
-    // const [transferred, setTransferred] = useState(0);
-
-    // const selectImage = () => {
-    //     const options = {
-    //       maxWidth: 2000,
-    //       maxHeight: 2000,
-    //       storageOptions: {
-    //         skipBackup: true,
-    //         path: 'images'
-    //       }
-    //     };
-    //     ImagePicker.showImagePicker(options, response => {
-    //       if (response.didCancel) {
-    //         console.log('User cancelled image picker');
-    //       } else if (response.error) {
-    //         console.log('ImagePicker Error: ', response.error);
-    //       } else if (response.customButton) {
-    //         console.log('User tapped custom button: ', response.customButton);
-    //       } else {
-    //         const source = { uri: response.uri };
-    //         console.log(source);
-    //         setImage(source);
-    //       }
-    //     });
-    //   };
-
-    //   const uploadImage = async () => {
-    //     const { uri } = image;
-    //     const filename = uri.substring(uri.lastIndexOf('/') + 1);
-    //     const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri;
-    //     setUploading(true);
-    //     setTransferred(0);
-    //     const task = firebase.storage()
-    //       .ref(filename)
-    //       .putFile(uploadUri);
-    //     // set progress state
-    //     task.on('state_changed', snapshot => {
-    //       setTransferred(
-    //         Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000
-    //       );
-    //     });
-    //     try {
-    //       await task;
-    //     } catch (e) {
-    //       console.error(e);
-    //     }
-    //     setUploading(false);
-    //     Alert.alert(
-    //       'Photo uploaded!',
-    //       'Your photo has been uploaded to Firebase Cloud Storage!'
-    //     );
-    //     setImage(null);
-    //   };
-
-
-
     return (
         <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
-            <FormField label={'Your Full Name'} placeholder={'First Last'}/>
-            <FormField label={'Your Email'} placeholder={'example@you.edu'}/>
-            <FormField label={'Book Title'} placeholder={'Title'}/>
-            <FormField label={'Book Author'} placeholder={'Author'}/>
-            <FormField label={'ISBN'} placeholder={'ISBN'}/>
-            <FormField label={'Book Price'} placeholder={'Price'}/>
-            <FormField label={'Location'} placeholder={'Pick-up Location'}/>
+            <FormField label={'Your Full Name'} placeholder={'First Last'} data={data} setData={setData} name={'name'}/>
+            <FormField label={'Your Email'} placeholder={'example@you.edu'} data={data} setData={setData} name={'email'}/>
+            <FormField label={'Book Title'} placeholder={'Title'} data={data} setData={setData} name={'title'}/>
+            <FormField label={'Book Author'} placeholder={'Author'} data={data} setData={setData} name={'author'}/>
+            <FormField label={'ISBN'} placeholder={'ISBN'} data={data} setData={setData} name={'isbn'}/>
+            <FormField label={'Book Price'} placeholder={'Price'} data={data} setData={setData} name={'price'}/>
+            <FormField label={'Condition'} placeholder={'Condition'} data={data} setData={setData} name={'condition'}/>
+            <FormField label={'Location'} placeholder={'Pick-up Location'} data={data} setData={setData} name={'location'}/>
             <Text>
                 Book Image
             </Text>
