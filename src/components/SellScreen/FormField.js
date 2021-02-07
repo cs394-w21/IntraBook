@@ -21,7 +21,6 @@ const FormField = ({ label, placeholder, name, setData, data }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                // value={query}
                 onChangeText={text => handleField(text)}
                 placeholder={placeholder}
                 placeholderTextColor='grey'

@@ -13,12 +13,11 @@ const MainScreen = ({ navigation }) => {
     const [results, setResults] = useState(null);
     const [query, setQuery] = useState('');
     const db = firebase.database().ref();
-    const storage = firebase.storage().ref();
 
     useEffect(() => {
         const handleData = snap => {
           if (snap.val())
-            {   console.log(snap.val().data[0])
+            {
                 setData(snap.val().data);
                 //setCart(snap.val().data)
             }
@@ -42,6 +41,7 @@ const MainScreen = ({ navigation }) => {
             return false;
         }
     };
+
     return (
         <ImageBackground source={require('../../assets/background.png')} style={styles.mainContainer}>
             <View style={styles.container}>
@@ -59,8 +59,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         padding: '5%'
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     mainContainer: {
         width: '100%', 

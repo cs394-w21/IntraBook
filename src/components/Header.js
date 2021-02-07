@@ -4,9 +4,7 @@ import CartItems from './MainScreen/CartItems';
 
 const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
     const toggleCart = () => {
-        console.log(cart)
         displayCart ? setDisplayCart(false) : setDisplayCart(true)
-        console.log(displayCart)
     }
 
     return (

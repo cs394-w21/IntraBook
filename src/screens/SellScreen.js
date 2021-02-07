@@ -1,15 +1,11 @@
-// import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-import FormField from '../components/SellScreen/FormField';
 import { firebase } from '../../firebase';
+import FormField from '../components/SellScreen/FormField';
 
-import * as ImagePicker from 'expo-image-picker';
-
-var uuid = require('react-native-uuid');
-
-
+// var uuid = require('react-native-uuid');
 
 const SellScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
@@ -29,6 +25,22 @@ const SellScreen = ({ navigation }) => {
         title: ""
     });
     const db = firebase.database().ref('/data');
+
+    const generateUUID = () => { // Public Domain/MIT
+      var d = new Date().getTime();//Timestamp
+      var d2 = (performance && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16;//random number between 0 and 16
+          if(d > 0){//Use timestamp until depleted
+              r = (d + r)%16 | 0;
+              d = Math.floor(d/16);
+          } else {//Use microseconds since page-load if supported
+              r = (d2 + r)%16 | 0;
+              d2 = Math.floor(d2/16);
+          }
+          return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+      });
+    };  
 
     useEffect(() => {
         (async () => {
@@ -58,18 +70,17 @@ const SellScreen = ({ navigation }) => {
     };
 
     const handleSumbit = async () => {
-      var id = uuid.v4();
+      const id = generateUUID();
       let newData = {...data};
       newData['id'] = id;
       setData(newData);
 
-      console.log(data)
       const path = `post_images/${id}.jpeg`;
       const metadata = {
           contentType: 'image/jpeg',
       };
 
-      db.push(data);
+      db.push(newData);
 
       return new Promise(async (res, rej) => {
         const response = await fetch(image);
