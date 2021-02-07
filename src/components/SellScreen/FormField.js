@@ -2,12 +2,15 @@ import React from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 const FormField = ({ label, placeholder, name, setData, data }) => {
-
     const handleField = (text) => {
         let newData = {...data}
-        newData[name] = text
+        if (name == 'name' || name == 'phone' || name == 'email') {
+            newData.poster[name] = text;
+        } else {
+            newData[name] = text;
+        }
         setData(newData)
-    }
+    };
     
     return (
         <View style={styles.inputContainer}>

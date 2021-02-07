@@ -14,6 +14,7 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
         })
         .catch((e) => console.log('Errors while downloading => ', e));
     }, []);
+
     return (
         <TouchableOpacity
             style={styles.container}

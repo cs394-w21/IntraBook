@@ -25,12 +25,11 @@ const MainScreen = ({ navigation }) => {
         }
         db.on('value', handleData, error => alert(error));
         return () => { db.off('value', handleData); };
-      }, []);
-
+    }, []);
 
     const getResults = () => {
         const formattedQuery = query.toLowerCase();
-        const filteredData = data.filter(item => contains(item, formattedQuery));
+        const filteredData = Object.values(data).filter(item => contains(item, formattedQuery));
         setResults(filteredData);
     };
 

@@ -28,6 +28,7 @@ const SellScreen = ({ navigation }) => {
         price: 0,
         title: ""
     });
+    const db = firebase.database().ref('/data');
 
     useEffect(() => {
         (async () => {
@@ -38,57 +39,55 @@ const SellScreen = ({ navigation }) => {
             }
           }
         })();
-      }, []);
+    }, []);
     
-      const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-          base64: true,
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
-        });
-    
-        console.log(result);
-    
-        if (!result.cancelled) {
-          setImage(result.uri);
-        }
+    const pickImage = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        base64: true,
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      console.log(result);
+  
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
+    };
+
+    const handleSumbit = async () => {
+      var id = uuid.v4();
+      let newData = {...data};
+      newData['id'] = id;
+      setData(newData);
+
+      console.log(data)
+      const path = `post_images/${id}.jpeg`;
+      const metadata = {
+          contentType: 'image/jpeg',
       };
 
-      const handleSumbit = async () => {
+      db.push(data);
 
-        var id = uuid.v4()
-        let newData = {...data}
-        newData['id'] = id
-        setData(newData)
-
-        console.log(data)
-        const path = `post_images/${id}.jpeg`;
-        const metadata = {
-            contentType: 'image/jpeg',
-        };
-          
-        return new Promise(async (res, rej) => {
-          const response = await fetch(image);
-          const file = await response.blob();
-          const upload = firebase.storage().ref(path).put(file, metadata);
-          upload.on(
-            "state_changed",
-            (snapshot) => {},
-            (err) => {
-              rej(err);
-            },
-            async () => {
-              const url = await upload.snapshot.ref.getDownloadURL();
-              res(url);
-            }
-          );
-        });
-      };
-    
-
-      const [imageUrl, setImageUrl] = useState(undefined);
+      return new Promise(async (res, rej) => {
+        const response = await fetch(image);
+        const file = await response.blob();
+        const upload = firebase.storage().ref(path).put(file, metadata);
+        upload.on(
+          "state_changed",
+          (snapshot) => {},
+          (err) => {
+            rej(err);
+          },
+          async () => {
+            const url = await upload.snapshot.ref.getDownloadURL();
+            res(url);
+          }
+        );
+      });
+    };
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
