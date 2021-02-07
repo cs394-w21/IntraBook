@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TextInput, Text, TouchableOpacity, Platform, Image } from 'react-native';
-import FormField from '../components/SellScreen/FormField'
-import { Icon } from 'react-native-elements'
 import * as ImagePicker from 'expo-image-picker';
+import React, { useEffect, useState } from 'react';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements';
+import FormField from '../components/SellScreen/FormField';
+
 
 const SellScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
@@ -45,10 +46,8 @@ const SellScreen = ({ navigation }) => {
     //     .catch((e) => console.log('Errors while downloading => ', e));
     // }, []);
 
-      
-   
     return (
-        <View style={styles.container1}>
+        <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
             <FormField label={'Your Full Name'} placeholder={'First Last'}/>
             <FormField label={'Your Email'} placeholder={'example@you.edu'}/>
             <FormField label={'Book Title'} placeholder={'Title'}/>
@@ -56,7 +55,6 @@ const SellScreen = ({ navigation }) => {
             <FormField label={'ISBN'} placeholder={'ISBN'}/>
             <FormField label={'Book Price'} placeholder={'Price'}/>
             <FormField label={'Location'} placeholder={'Pick-up Location'}/>
-            {/* <FormField label={'PIC_UPLOAD'} placeholder={''}/> */}
             <Text>
                 Book Image
             </Text>
@@ -73,24 +71,13 @@ const SellScreen = ({ navigation }) => {
                     Submit
                 </ Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: '100%',
         flex: 1,
-        marginTop: 20,
-        alignItems: "center",
-    },
-    container1: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 15,
-        bottom: 20,
     },
     errorMsg: {
         marginBottom: 20,
@@ -128,6 +115,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 80,
         top: 20,
         borderRadius: 5,
+        marginBottom: 50
     },
     submitText: {
         color: 'white',

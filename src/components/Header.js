@@ -60,7 +60,7 @@ const openButton = {
 
 const styles = StyleSheet.create({
     safeViewStyle: {
-        // if needed
+        marginTop: 20,
     },
     cartModal: {
         margin: 20,
