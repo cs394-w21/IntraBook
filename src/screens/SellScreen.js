@@ -1,12 +1,20 @@
-import * as ImagePicker from 'expo-image-picker';
+// import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import FormField from '../components/SellScreen/FormField';
+import nextId from "react-id-generator";
+import { firebase } from '../../firebase';
+
+import ImagePicker from 'react-native-image-picker';
+
+
 
 
 const SellScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
+    const id = nextId();
+    console.log(typeof image);
 
     useEffect(() => {
         (async () => {
@@ -21,6 +29,7 @@ const SellScreen = ({ navigation }) => {
     
       const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
+          base64: true,
           mediaTypes: ImagePicker.MediaTypeOptions.All,
           allowsEditing: true,
           aspect: [4, 3],
@@ -34,17 +43,113 @@ const SellScreen = ({ navigation }) => {
         }
       };
 
-    //   const [imageUrl, setImageUrl] = useState(undefined);
+      const handleSumbit = async (image) => {
+          
+        const path = `post_images/${id}.jpeg`;
+        const metadata = {
+            contentType: 'image/jpeg',
+          };
+          
+        return new Promise(async (res, rej) => {
+          const response = await fetch(image);
+          const file = await response.blob();
+          const upload = firebase.storage().ref(path).put(file, metadata);
+          upload.on(
+            "state_changed",
+            (snapshot) => {},
+            (err) => {
+              rej(err);
+            },
+            async () => {
+              const url = await upload.snapshot.ref.getDownloadURL();
+              res(url);
+            }
+          );
+        });
+      };
+    
 
-    // useEffect(() => {
-    //     firebase.storage()
-    //     .ref('/' + item.isbn+'.jpg') //name in storage in firebase console
-    //     .getDownloadURL()
-    //     .then((url) => {
-    //         setImageUrl(url);
+      const [imageUrl, setImageUrl] = useState(undefined);
+
+    useEffect(() => {
+        firebase.storage()
+        .ref(`post_images/${id}.jpg`) //name in storage in firebase console
+        .getDownloadURL()
+        .then((url) => {
+            setImageUrl(url);
+        })
+        .catch((e) => console.log('Errors while downloading => ', e));
+    }, []);
+
+    // const handleSumbit = () => {
+    //     firebase
+    //     .storage()
+    //     .ref('/'+{id}+'.jpg')
+    //     .put(image)
+    //     .then((snapshot) => {
+    //         //You can check the image is now uploaded in the storage bucket
+    //         console.log(`${imageName} has been successfully uploaded.`);
     //     })
-    //     .catch((e) => console.log('Errors while downloading => ', e));
-    // }, []);
+    //     .catch((e) => console.log('uploading image error => ', e));
+    // }
+
+    // const [image, setImage] = useState(null);
+    // const [uploading, setUploading] = useState(false);
+    // const [transferred, setTransferred] = useState(0);
+
+    // const selectImage = () => {
+    //     const options = {
+    //       maxWidth: 2000,
+    //       maxHeight: 2000,
+    //       storageOptions: {
+    //         skipBackup: true,
+    //         path: 'images'
+    //       }
+    //     };
+    //     ImagePicker.showImagePicker(options, response => {
+    //       if (response.didCancel) {
+    //         console.log('User cancelled image picker');
+    //       } else if (response.error) {
+    //         console.log('ImagePicker Error: ', response.error);
+    //       } else if (response.customButton) {
+    //         console.log('User tapped custom button: ', response.customButton);
+    //       } else {
+    //         const source = { uri: response.uri };
+    //         console.log(source);
+    //         setImage(source);
+    //       }
+    //     });
+    //   };
+
+    //   const uploadImage = async () => {
+    //     const { uri } = image;
+    //     const filename = uri.substring(uri.lastIndexOf('/') + 1);
+    //     const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri;
+    //     setUploading(true);
+    //     setTransferred(0);
+    //     const task = firebase.storage()
+    //       .ref(filename)
+    //       .putFile(uploadUri);
+    //     // set progress state
+    //     task.on('state_changed', snapshot => {
+    //       setTransferred(
+    //         Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000
+    //       );
+    //     });
+    //     try {
+    //       await task;
+    //     } catch (e) {
+    //       console.error(e);
+    //     }
+    //     setUploading(false);
+    //     Alert.alert(
+    //       'Photo uploaded!',
+    //       'Your photo has been uploaded to Firebase Cloud Storage!'
+    //     );
+    //     setImage(null);
+    //   };
+
+
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
@@ -66,7 +171,7 @@ const SellScreen = ({ navigation }) => {
                 />
             </TouchableOpacity>
             {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-            <TouchableOpacity style={styles.submitButton} onPress={() => console.log(image)}> 
+            <TouchableOpacity style={styles.submitButton} onPress={handleSumbit}> 
                 <Text style={styles.submitText}>
                     Submit
                 </ Text>
