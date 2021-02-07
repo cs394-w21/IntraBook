@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { ImageBackground, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
-import SearchResults from '../components/ResultsScreen/SearchResults';
-import SearchSection from '../components/MainScreen/SearchSection';
-import Header from '../components/Header'
+import React, { useEffect, useState } from 'react';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import { firebase } from '../../firebase';
+import Header from '../components/Header';
+import SearchSection from '../components/MainScreen/SearchSection';
+import SearchResults from '../components/ResultsScreen/SearchResults';
 
 
 const MainScreen = ({ navigation }) => {
