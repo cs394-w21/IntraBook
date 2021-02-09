@@ -13,7 +13,7 @@ const AddCartButton = ({ navigation, setCart, item, cart, setCartNotif }) => {
             onPress={() => handleCart()}
         >
             <Text>
-                Add to Cart
+                Watch book
             </Text>
         </TouchableOpacity>
     );

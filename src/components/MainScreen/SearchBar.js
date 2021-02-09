@@ -14,7 +14,7 @@ const SearchBar = ({ query, setQuery, getResults }) => {
           backgroundColor: '#333333',
           padding: 15,
           borderRadius: 10,
-          width: '100%',
+          width: '80%',
           height: 40,
           alignContent: 'center',
           justifyContent : 'center'

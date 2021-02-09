@@ -7,7 +7,7 @@ const SearchSection = ({ getResults,query, setQuery }) => {
     return (
         <View style={styles.container}>
             <SearchBar query={query} setQuery={setQuery} getResults={getResults} />
-            {/* <SearchButton getResults={getResults} /> */}
+            <SearchButton getResults={getResults} />
         </View>
     );
 };

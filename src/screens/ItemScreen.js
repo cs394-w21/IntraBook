@@ -65,7 +65,7 @@ const ItemScreen = ({route, navigation}) => {
                     <AddCartButton cart={cart} setCart={setCart} item={item} setCartNotif={setCartNotif}/>
                     <MessageButton item={item}/>
                 </View>
-                {cartNotif ? <Text style={styles.addToCartButtonNotif}>Item added to cart</Text> : null}
+                {cartNotif ? <Text style={styles.addToCartButtonNotif}>Item added to watchlist</Text> : null}
             </View>
         </ScrollView>
     );
