@@ -1,6 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, Modal, View, TouchableHighlight } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { firebase } from '../../firebase';
 import FormField from '../components/SellScreen/FormField';
@@ -9,6 +9,7 @@ import FormField from '../components/SellScreen/FormField';
 
 const SellScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
+    const [success, setSuccess] = useState(false);
     const [data, setData] = useState({
         author: "",
         condition: "",
@@ -82,6 +83,8 @@ const SellScreen = ({ navigation }) => {
 
       db.push(newData);
 
+      setSuccess(true)
+
       return new Promise(async (res, rej) => {
         const response = await fetch(image);
         const file = await response.blob();
@@ -98,6 +101,8 @@ const SellScreen = ({ navigation }) => {
           }
         );
       });
+
+
     };
 
     return (
@@ -126,8 +131,36 @@ const SellScreen = ({ navigation }) => {
                     Submit
                 </ Text>
             </TouchableOpacity>
+
+            {success ? 
+              <Modal
+                animationType="slide"
+                transparent={true}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.cartModal}>
+                    <Text>You have successfully uploaded a book</Text>
+                        
+                        <TouchableHighlight
+                            style={styles.modalStyle}
+                            onPress={() => navigation.navigate('MainScreen')}
+                        >
+                            <Text>Back to Homepage</Text>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+            </Modal> : null
+          }
         </ScrollView>
     );
+};
+
+const openButton = {
+  backgroundColor: "#F194FF",
+  borderRadius: 20,
+  padding: 10,
+  elevation: 2,
+  top: 10,
 };
 
 const styles = StyleSheet.create({
@@ -178,6 +211,31 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    cartModal: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+      width: 0,
+      height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalStyle: {
+      ...openButton, 
+      backgroundColor: "#2196F3",
+  }
 });
 
 export default SellScreen;
