@@ -1,8 +1,9 @@
 import React from 'react';
 import { SafeAreaView, Text, StyleSheet, View, TouchableOpacity, TouchableHighlight, Modal } from 'react-native';
 import CartItems from './MainScreen/CartItems';
+import { Icon } from 'react-native-elements';
 
-const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
+const Header = ({ displayCart, cart, setDisplayCart, navigation, setCart }) => {
     const toggleCart = () => {
         displayCart ? setDisplayCart(false) : setDisplayCart(true)
     }
@@ -16,8 +17,14 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => toggleCart()} style={styles.cartButton}>
+                    
+                    <Icon
+                        name='eye'
+                        type='font-awesome'
+                        color='black'
+                    />
                     <Text>
-                        Cart ({cart.length})
+                        ({cart.length})
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -30,14 +37,14 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation }) => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.cartModal}>
-                        <CartItems data={cart} />
+                        <CartItems data={cart} setCart={setCart} />
                         <TouchableHighlight
                             style={styles.modalStyle}
                             onPress={() => {
                                 toggleCart();
                             }}
                         >
-                            <Text style={styles.textStyle}>Close Cart</Text>
+                            <Text style={styles.textStyle}>Close</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
@@ -101,6 +108,8 @@ const styles = StyleSheet.create({
         width: 100, 
         padding: 10, 
         alignItems: "center",
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     },
     modalStyle: {
         ...openButton, 

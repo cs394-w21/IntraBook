@@ -45,7 +45,7 @@ const MainScreen = ({ navigation }) => {
     return (
         <ImageBackground source={require('../../assets/background.png')} style={styles.mainContainer}>
             <View style={styles.container}>
-                <Header navigation={navigation} displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} />
+                <Header navigation={navigation} displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} setCart={setCart} />
                 <View style={styles.bodyContainer}>
                     <SearchSection getResults={getResults} query={query} setQuery={setQuery} />
                     {results ? <SearchResults displayCart={displayCart} cart={cart} setDisplayCart={setDisplayCart} navigation={navigation} results={results} setCart={setCart} /> : null}

@@ -59,7 +59,7 @@ const ItemScreen = ({route, navigation}) => {
                 </View>
                 <View style={styles.addToCartButton}>
                     <AddCartButton cart={cart} setCart={setCart} item={item} setCartNotif={setCartNotif}/>
-                    <MessageButton/>
+                    <MessageButton item={item}/>
                 </View>
                 {cartNotif ? <Text style={styles.addToCartButtonNotif}>Item added to cart</Text> : null}
             </View>

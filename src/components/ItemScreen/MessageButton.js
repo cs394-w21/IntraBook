@@ -1,13 +1,28 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Linking } from 'react-native';
 
-const MessageButton = ({ navigation }) => {
+const MessageButton = ({ navigation, item }) => {
     return (
         <TouchableOpacity
+            onPress={() => Linking.openURL(`mailto:${item.poster.email}`)
+                .then((data) => console.error("then", data))
+                .catch((err) => { throw err; })}
+            // onPress={() => {
+            //     const url = `mailto:${item.poster.email}`;
+            //     Linking.openURL(url)
+            //         .then((supported) => {
+            //             if (supported) {
+            //                 return Linking.openURL(url)
+            //                     .catch(() => null);
+            //             }
+            //         });
+            // }
+
+            // }
             style={styles.messageButton}
         >
             <Text>
-                Message
+                Email
             </Text>
         </TouchableOpacity>
     );

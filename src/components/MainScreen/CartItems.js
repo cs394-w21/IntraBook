@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import CartItem from './CartItem';
 
-const CartItems = ({ data }) => {
+const CartItems = ({ data, setCart }) => {
+   
     return (
         <View style={styles.container}>
-            {data.length < 1 ? <Text style={styles.cartItem}>Cart is Empty</Text> : 
+            {data.length < 1 ? <Text style={styles.cartItem}>Watchlist is empty</Text> : 
               data.map(item => 
-                <Text style={styles.cartItem}>{item.title}</Text>)}
+                <CartItem item={item} setCart={setCart} cart={data}/>
+                )}
         </View>
     );
 };
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 200,
+        width: 276,
         padding: 5,
         backgroundColor: "white"
     },
@@ -24,6 +27,11 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderBottomWidth: 1,
         padding: 5,
+    },
+    menuWrap: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
     }
 });
 
