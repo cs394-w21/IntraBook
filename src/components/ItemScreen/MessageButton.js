@@ -7,18 +7,6 @@ const MessageButton = ({ navigation, item }) => {
             onPress={() => Linking.openURL(`mailto:${item.poster.email}`)
                 .then((data) => console.error("then", data))
                 .catch((err) => { throw err; })}
-            // onPress={() => {
-            //     const url = `mailto:${item.poster.email}`;
-            //     Linking.openURL(url)
-            //         .then((supported) => {
-            //             if (supported) {
-            //                 return Linking.openURL(url)
-            //                     .catch(() => null);
-            //             }
-            //         });
-            // }
-
-            // }
             style={styles.messageButton}
         >
             <Text>
