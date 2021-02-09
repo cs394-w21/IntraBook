@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderBottomWidth: 1,
         padding: 5,
+        fontWeight: 'bold',
     },
     menuWrap: {
         flexDirection: 'row',

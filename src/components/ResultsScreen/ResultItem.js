@@ -35,21 +35,20 @@ const ResultItem = ({ navigation, item, setCart, displayCart, cart, setDisplayCa
 
 const styles = StyleSheet.create({
     container: {
-        padding: '1.5%',
+        padding: 17,
         flexDirection: 'row',
         alignSelf: 'flex-start',
         borderRadius: 5,
       },
       item: {
-        //padding: '1%',
         flexDirection: 'column',
         alignItems: 'flex-start',
         width: '75%',
-        padding: 5,
+        marginLeft: 10,
       },
       image: {
         height: 80,
-        width: 80,
+        width: 65,
       },
 
 });

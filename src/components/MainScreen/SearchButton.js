@@ -8,7 +8,7 @@ const SearchButton = ({ getResults }) => {
             style={styles.searchButton}
             onPress={() => getResults()}
         >
-            <Text>
+            <Text style={styles.txt}>
                 GO
             </Text>
         </TouchableOpacity>
@@ -17,17 +17,19 @@ const SearchButton = ({ getResults }) => {
 
 const styles = StyleSheet.create({
     searchButton: {
-        borderRadius: 5,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
         height: 50,
         padding: 10,
-        minWidth: 50,
-        maxWidth: 50,
+        width: 50,
         backgroundColor: '#66b0ff',
         left: 11,
     },
+    txt: {
+        fontWeight: 'bold',
+    }
 });
 
 export default SearchButton;

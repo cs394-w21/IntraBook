@@ -31,27 +31,31 @@ const ItemScreen = ({route, navigation}) => {
                 <View style={styles.bookImageView}>
                     <Image source={{uri:imageUrl}} style = {styles.pic} />
                 </View>
-                <View style={styles.detailContainer}>
-                    <Text style={styles.wordStyle}>
-                        <Text style={styles.boldWord}>Author: </Text> 
-                        {item.author}
-                    </Text>
-                    <Text style={styles.wordStyle}>
-                        <Text style={styles.boldWord}>ISBN: </Text> 
-                        {item.isbn}
-                    </Text>
-                    <Text style={styles.wordStyle}>
-                        <Text style={styles.boldWord}>Price: </Text> 
-                        ${item.price} 
-                    </Text>
-                    <Text style={styles.wordStyle}>
-                        <Text style={styles.boldWord}>Condition: </Text> 
-                        {item.condition}
-                    </Text>
-                    <Text style={styles.wordStyle}>
-                    <Text style={styles.boldWord}>Sold By: </Text> 
-                        {item.poster.name}
-                    </Text>
+                <View style={styles.detailContainerRow}>
+                    <View style={styles.detailContainer}>
+                        <Text style={styles.wordStyle}>
+                            <Text style={styles.boldWord}>Author: </Text> 
+                            {item.author}
+                        </Text>
+                        <Text>
+                            <Text style={styles.boldWord}>Sold By: </Text> 
+                            {item.poster.name}
+                            </Text>
+                        <Text style={styles.wordStyle}>
+                            <Text style={styles.boldWord}>Price: </Text> 
+                            ${item.price} 
+                        </Text>
+                    </View>
+                    <View style={styles.detailContainer}>
+                        <Text style={styles.wordStyle}>
+                            <Text style={styles.boldWord}>ISBN: </Text> 
+                            {item.isbn}
+                        </Text>
+                        <Text style={styles.wordStyle}>
+                            <Text style={styles.boldWord}>Condition: </Text> 
+                            {item.condition}
+                        </Text>
+                    </View>
                 </View>
                 <View style={styles.locationView}>
                     <Image source={require('../../assets/location.png')} style= {styles.locationImage}></Image>
@@ -82,6 +86,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     detailContainer: {
+        flexDirection: 'column',
+        flex: 1,
+        flexWrap: 'wrap',
+    },
+    detailContainerRow: {
         flexDirection: 'row',
         flex: 1,
         flexWrap: 'wrap',
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
         width: 390,
         resizeMode: 'contain',
         justifyContent: 'flex-start',
-        height: 500
+        height: 500,
     },
     addToCartButtonNotif: {
         color: "green",

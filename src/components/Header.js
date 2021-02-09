@@ -12,18 +12,17 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation, setCart }) => {
         <SafeAreaView style={styles.safeViewStyle}>
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => navigation.navigate('SellScreen')} style={styles.sellButton}>
-                    <Text >
-                        Sell Books
+                    <Text style={styles.txt}>
+                        Sell
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => toggleCart()} style={styles.cartButton}>
-                    
                     <Icon
                         name='eye'
                         type='font-awesome'
                         color='black'
                     />
-                    <Text>
+                    <Text style={styles.txt}>
                         ({cart.length})
                     </Text>
                 </TouchableOpacity>
@@ -33,8 +32,7 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation, setCart }) => {
             ?
             <Modal
                 animationType="slide"
-                transparent={true}
-            >
+                transparent={true}>
                 <View style={styles.centeredView}>
                     <View style={styles.cartModal}>
                         <CartItems data={cart} setCart={setCart} />
@@ -44,7 +42,7 @@ const Header = ({ displayCart, cart, setDisplayCart, navigation, setCart }) => {
                                 toggleCart();
                             }}
                         >
-                            <Text style={styles.textStyle}>Close</Text>
+                            <Text style={styles.txt}>Close</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
@@ -100,6 +98,7 @@ const styles = StyleSheet.create({
         width: 100, 
         padding: 10, 
         alignItems: "center",
+        justifyContent: 'center',
     },
     cartButton: {
         borderRadius: 10, 
@@ -114,6 +113,9 @@ const styles = StyleSheet.create({
     modalStyle: {
         ...openButton, 
         backgroundColor: "#2196F3",
+    },
+    txt: {
+        fontWeight: 'bold',
     }
 });
 
