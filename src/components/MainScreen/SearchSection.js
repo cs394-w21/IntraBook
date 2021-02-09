@@ -6,8 +6,8 @@ import SearchButton from './SearchButton';
 const SearchSection = ({ getResults,query, setQuery }) => {
     return (
         <View style={styles.container}>
-            <SearchBar query={query} setQuery={setQuery} />
-            <SearchButton getResults={getResults} />
+            <SearchBar query={query} setQuery={setQuery} getResults={getResults} />
+            {/* <SearchButton getResults={getResults} /> */}
         </View>
     );
 };
